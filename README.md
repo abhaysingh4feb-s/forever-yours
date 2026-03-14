@@ -37,14 +37,14 @@ valentine/
 
 ## Live Demo
 
-Hosted on GitHub Pages: `https://<username>.github.io/<repo-name>`
+Hosted on GitHub Pages: https://abhaysingh4feb-s.github.io/forever-yours
 
 ## Deployment (GitHub Pages)
 
 1. Push this repo to GitHub
 2. Go to **Settings → Pages**
 3. Set source to `main` branch, root `/`
-4. Your site will be live at `https://<username>.github.io/<repo-name>`
+4. Your site will be live at `https://abhaysingh4feb-s.github.io/forever-yours`
 
 ## Customization
 
