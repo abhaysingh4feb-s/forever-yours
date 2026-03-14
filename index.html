@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Anamika ❤️</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           🎨 THEME: MIDNIGHT ROMANCE
+           ============================================ */
+        :root {
+            --primary-glow: #ff0a54;
+            --accent-gold: #ffd700;
+            --glass-bg: rgba(20, 10, 20, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            background-color: #050203;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        /* --- 1. Dynamic Background --- */
+        .bg-texture {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Using 'rose_for_background.jpg' */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('assets/rose_for_background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: breathe 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* --- 2. Typography --- */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin: 0 0 15px 0;
+            background: linear-gradient(to right, #fff, #ffccd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255, 10, 84, 0.5));
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        /* --- 3. Glass Cards --- */
+        .glass-card {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            border-radius: 30px;
+            padding: 30px;
+            width: 85%;
+            max-width: 420px;
+            text-align: center;
+            z-index: 10;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- 4. IMAGE STYLES --- */
+        .magic-blend {
+            width: 200px; height: auto; display: block; margin: 0 auto;
+            mix-blend-mode: screen; filter: brightness(1.2) contrast(1.1); transition: transform 0.5s ease;
+        }
+        .framed-art {
+            width: 180px; height: 180px; object-fit: cover; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 10px auto; transition: transform 0.3s ease;
+        }
+        .circle-token {
+            width: 180px; height: 180px; object-fit: cover; border-radius: 50%;
+            border: 2px solid rgba(255, 215, 0, 0.3); box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            margin: 10px auto; transition: transform 0.3s ease;
+        }
+        .magic-blend:hover, .framed-art:hover, .circle-token:hover { transform: scale(1.05) rotate(2deg); }
+
+        /* --- 5. Buttons --- */
+        .btn {
+            background: linear-gradient(45deg, #ff0a54, #ff477e);
+            color: white; border: none; padding: 14px 40px; border-radius: 50px;
+            font-family: 'Cinzel', serif; font-weight: 600; font-size: 1rem; cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 10, 84, 0.4); transition: all 0.2s ease;
+            margin-top: 15px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn.disabled { opacity: 0.5; filter: grayscale(1); pointer-events: none; }
+        .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.5); box-shadow: none; }
+
+        /* --- 6. Scenes --- */
+        .scene {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.8s ease;
+        }
+        .scene.active { opacity: 1; visibility: visible; pointer-events: auto; z-index: 100; }
+
+        /* --- 7. Elements --- */
+        .checkbox-container { text-align: left; display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .checkbox-item { 
+            display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05); 
+            padding: 15px; border-radius: 15px; cursor: pointer; transition: 0.3s;
+        }
+        .checkbox-item:hover { background: rgba(255,255,255,0.1); }
+        .checkbox-item input { width: 20px; height: 20px; accent-color: var(--primary-glow); }
+
+        .hug-btn {
+            width: 130px; height: 130px; border-radius: 50%; background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); color: white; font-weight: bold; font-family: 'Cinzel', serif;
+            cursor: pointer; position: relative; overflow: hidden; margin: 20px auto;
+            box-shadow: 0 0 30px rgba(255, 10, 84, 0.2);
+        }
+        .hug-fill { position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; background: var(--primary-glow); transition: height 0.1s; }
+
+        .game-area { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 200; }
+        .falling-choco { 
+            position: absolute; width: 60px; height: auto; cursor: pointer; pointer-events: auto; 
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); transition: transform 0.1s; 
+        }
+
+        .sound-btn {
+            position: fixed; top: 20px; right: 20px; z-index: 1000;
+            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.3);
+            color: white; padding: 10px 15px; border-radius: 30px; cursor: pointer;
+        }
+
+        /* Glowing Text for No Button */
+        .playful-text {
+            margin-top: 20px; font-size: 1rem; min-height: 24px; font-weight: 500; opacity: 0; transition: opacity 0.5s ease;
+            text-align: center; color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 10, 84, 0.5), 0 0 30px rgba(255, 10, 84, 0.3);
+            animation: textPulse 2s infinite alternate;
+        }
+        .playful-text.visible { opacity: 1; }
+        @keyframes textPulse {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 10, 84, 0.5); transform: scale(1); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 10, 84, 0.8); transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-texture"></div>
+    <div id="confetti-container"></div>
+
+    <button id="soundToggle" class="sound-btn">🔇 Music</button>
+    <audio id="bgMusic" loop>
+        <source src="audio/romantic-bg.mp3" type="audio/mpeg">
+    </audio>
+
+    <section id="scene1" class="scene active">
+        <div class="glass-card">
+            <h1>Hey Anamika</h1>
+            <p>Every love story is beautiful, but ours is my favorite.</p>
+            <button class="btn" onclick="nextScene(2)">Start ❤️</button>
+        </div>
+    </section>
+
+    <section id="scene2" class="scene">
+        <div class="glass-card">
+            <h1>Rose Day</h1>
+            <p>A crystal rose that never fades, just like my love.</p>
+            <img src="assets/rose.jpg" class="magic-blend" id="rose-img" onclick="bloomEffect()">
+            <p style="font-size: 0.8rem; opacity: 0.6; margin-top:10px;">(Touch to make it glow)</p>
+        </div>
+    </section>
+
+    <section id="scene3" class="scene">
+        <div class="glass-card">
+            <h1>Propose Day</h1>
+            <p style="margin-bottom:10px;">From our first Pizza Hut date...</p>
+            <img src="assets/dimand_ring.jpg" class="magic-blend" style="width: 180px;" onclick="createParticles(10, '💍')">
+            <p style="margin-top:10px;">To forever.</p>
+            <button class="btn" onclick="nextScene(4)">My Best Yes 💍</button>
+        </div>
+    </section>
+
+    <section id="scene4" class="scene">
+        <div class="glass-card">
+            <h1>Chocolate Day</h1>
+            <p>Catch 5 chocolates!</p>
+            <h2 id="score" style="font-size:3rem; margin:10px; color:var(--accent-gold);">0 / 5</h2>
+        </div>
+        <div id="game-area" class="game-area"></div>
+    </section>
+
+    <section id="scene5" class="scene">
+        <div class="glass-card">
+            <h1>Teddy Day</h1>
+            <p>Always here for a hug.</p>
+            <img src="assets/teddybear.jpg" class="framed-art" id="teddy-img" onclick="teddyHug()">
+            <p id="teddy-msg" style="opacity:0; color:var(--accent-gold); font-weight:bold;">Hugs Sent! 🤗</p>
+        </div>
+    </section>
+
+    <section id="scene6" class="scene">
+        <div class="glass-card">
+            <h1>Promises</h1>
+            <div class="checkbox-container">
+                <label class="checkbox-item"><input type="checkbox" onchange="checkPromise()"> Listen to your stories</label>
+                <label class="checkbox-item"><input type="checkbox" onchange="checkPromise()"> <strong>Never leave you alone.</strong></label>
+                <label class="checkbox-item"><input type="checkbox" onchange="checkPromise()"> Love you forever</label>
+            </div>
+            <button id="promise-btn" class="btn disabled" onclick="nextScene(7)">I Promise ❤️</button>
+        </div>
+    </section>
+
+    <section id="scene7" class="scene">
+        <div class="glass-card">
+            <h1>Hug Day</h1>
+            <p>Hold the button to hug your <strong>Panda 🐼</strong></p>
+            <button class="hug-btn" id="hug-btn">HOLD<div class="hug-fill" id="hug-fill"></div></button>
+        </div>
+    </section>
+
+    <section id="scene8" class="scene">
+        <div class="glass-card">
+            <h1>Kiss Day</h1>
+            <img src="assets/lips.jpg" class="circle-token" onclick="kissEffect()">
+            <p>Sending sparkles... 💋</p>
+        </div>
+    </section>
+
+    <section id="scene9" class="scene">
+        <div class="glass-card">
+            <h1>Anamika...</h1>
+            <p>Will you be my Valentine?</p>
+            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+                <button class="btn" onclick="handleYesClick()">YES ❤️</button>
+                <button class="btn btn-outline" id="no-btn">No 😅</button>
+            </div>
+            <p id="playfulText" class="playful-text"></p>
+        </div>
+    </section>
+
+    <section id="scene10" class="scene">
+        <div class="glass-card">
+            <h1 style="font-size:3.5rem;">Happy Valentine's Day</h1>
+            <p id="typewriter" style="white-space: pre-line; min-height:80px; font-family:'Cinzel', serif; font-size: 1.1rem; line-height: 1.6;"></p>
+            <p id="signature" style="opacity:0; font-style:italic; margin-top:20px;">~ Your Abhay ~</p>
+        </div>
+    </section>
+
+    <script>
+        // ============================================
+        // 🧠 LOGIC & INTERACTION
+        // ============================================
+
+        let currentScore = 0;
+        let hugInterval;
+
+        // --- RANDOM FINAL MESSAGES ---
+        const finalMessages = [
+            `Tum meri zindagi ka sirf hissa nahi ho,\ntum meri poori duniya ho.\n\nJab main kamzor padta hoon,\ntum bina kuch kahe mujhe sambhaal leti ho.\n\nMain shayad roz keh nahi paata,\npar har saans mein sirf tum ho.`,
+            `Maine zindagi mein bahut kuch dekha hai,\npar tum jaisa sukoon kahin nahi mila.\n\nTumhara saath mere liye ek waada hai —\nki chahe sab kuch badal jaaye,\nmain kabhi akela nahi hoon.`,
+            `Tumhare saath rehkar maine jaana,\npyaar sirf khushi mein saath dena nahi hota,\nbalki mushkil waqt mein chupchaap haath pakad lena hota hai.\n\nTumne har baar woh haath pakda hai,\njab mujhe sabse zyada zarurat thi.`,
+            `Agar kabhi poochha jaaye\nmeri zindagi ka sabse khoobsurat faisla kya tha,\ntoh main bina soche kahunga —\ntumhe apni zindagi mein chunn lena.\n\nAur main ye faisla har janam mein dobara lunga.`,
+            `Tumhari muskaan mere liye sirf muskaan nahi,\nmeri saari thakaan mita dene wali dawa hai.\n\nEk din bhi agar tum udaas ho jao,\ntoh meri poori duniya thodi si ruk jaati hai.\n\nTum khush ho, toh sab theek lagta hai.`,
+            `Main shayad perfect husband na hoon,\npar tumhare liye saccha hoon.\n\nMain vaada karta hoon,\nzindagi ke har mod par\ntumhara saath poore dil se nibhaunga.`,
+            `Tum meri zindagi ka woh sach ho,\njise main har roz jeeta hoon.\n\nTum mere ghar ka sukoon ho,\nmeri neend ka chain ho,\naur meri har dua ka matlab ho.`,
+            `Tum jab mere saath hoti ho,\ntoh duniya thodi kam mushkil lagti hai.\n\nTumhari awaaz, tumhara saath,\nsab kuch mujhe yaad dilata hai\nki main kitna lucky hoon.`,
+            `Main zyada bol nahi paata,\npar tumne bina bole sab samjha hai.\n\nTumne meri khamoshi bhi suni hai,\naur meri kamzori ko bhi pyaar banaya hai.\n\nIsse zyada pyaar kya hota hai?`,
+            `Agar kabhi zindagi thakaa de,\naur main chup ho jaaun,\ntoh bas itna yaad rakhna —\ntumhara haath mere haath mein hona,\nmere liye sabse badi himmat hai.`
+        ];
+
+        function nextScene(n) {
+            document.querySelector('.scene.active').classList.remove('active');
+            document.getElementById('scene' + n).classList.add('active');
+            if(n === 4) startChocolateGame();
+        }
+
+        // --- Rose Effect ---
+        function bloomEffect() {
+            const rose = document.getElementById('rose-img');
+            rose.style.transform = "scale(1.2)"; rose.style.filter = "brightness(1.5)";
+            createParticles(20, "✨"); setTimeout(() => nextScene(3), 1500);
+        }
+
+        // --- Chocolate Game ---
+        function startChocolateGame() {
+            const area = document.getElementById('game-area');
+            const spawner = setInterval(() => {
+                if(currentScore >= 5) {
+                    clearInterval(spawner); setTimeout(() => nextScene(5), 1000); return;
+                }
+                const img = document.createElement('img');
+                img.src = "assets/chocolate.jpg"; img.className = "falling-choco";
+                img.style.left = Math.random() * 80 + 10 + "%"; img.style.top = "-100px"; img.style.borderRadius = "10px"; 
+                img.onclick = () => {
+                    currentScore++; document.getElementById('score').innerText = currentScore + " / 5";
+                    img.style.transform = "scale(0)"; createParticles(5, "🍫");
+                };
+                area.appendChild(img);
+                let pos = -100;
+                const fall = setInterval(() => {
+                    pos += 3; img.style.top = pos + "px";
+                    if(pos > window.innerHeight) { clearInterval(fall); if(img.parentNode) img.remove(); }
+                }, 16);
+            }, 800);
+        }
+
+        // --- Teddy ---
+        function teddyHug() {
+            document.getElementById('teddy-img').style.transform = "scale(1.1)";
+            document.getElementById('teddy-msg').style.opacity = 1;
+            createParticles(15, "💖"); setTimeout(() => nextScene(6), 2000);
+        }
+
+        // --- Promises ---
+        function checkPromise() {
+            const checks = document.querySelectorAll('.checkbox-item input');
+            const allChecked = Array.from(checks).every(c => c.checked);
+            if(allChecked) document.getElementById('promise-btn').classList.remove('disabled');
+        }
+
+        // --- Hug Button ---
+        const hugBtn = document.getElementById('hug-btn');
+        const hugFill = document.getElementById('hug-fill');
+        function startHug(e) {
+            if(e.cancelable) e.preventDefault(); 
+            let height = 0;
+            hugInterval = setInterval(() => {
+                height += 2; hugFill.style.height = height + "%";
+                if(height >= 100) { clearInterval(hugInterval); createParticles(30, "🐼"); setTimeout(() => nextScene(8), 500); }
+            }, 20);
+        }
+        function stopHug() { clearInterval(hugInterval); hugFill.style.height = "0%"; }
+        hugBtn.addEventListener('mousedown', startHug); hugBtn.addEventListener('mouseup', stopHug);
+        hugBtn.addEventListener('mouseleave', stopHug); hugBtn.addEventListener('touchstart', startHug); hugBtn.addEventListener('touchend', stopHug);
+
+        // --- Kiss ---
+        function kissEffect() { createParticles(30, "✨"); setTimeout(() => nextScene(9), 1000); }
+
+        // --- NO BUTTON ---
+        const noBtn = document.getElementById('no-btn');
+        const playfulText = document.getElementById('playfulText');
+        const noMessages = [
+            "Dil toh kuch aur hi keh raha hai 💗", "Heart secretly voting Yes 💓", "Kismat thoda push kar rahi hai ✨",
+            "No bhi maanta hai, par keh nahi paata 😊", "Pyaar ka logic thoda alag hota hai 💕", "Are you really sure? 👀",
+            "Arre… ek baar aur soch lo 😅", "No ka confidence thoda hil gaya 😜", "Nice try… but destiny has plans 😎",
+            "No button panicking 😳", "No button bhaag gaya 🏃‍♂️💨", "No ne aankhen band kar li 😝",
+            "Lagta hai No bhi nervous ho gaya 😜", "No button ne haath jod diye 🙏", "Ye No thoda shy type hai 😌"
+        ];
+
+        function moveNo(e) {
+            if(e) e.preventDefault();
+            if (noBtn.parentNode !== document.body) document.body.appendChild(noBtn);
+            
+            const winW = window.innerWidth; const winH = window.innerHeight;
+            const btnW = noBtn.offsetWidth || 100; const btnH = noBtn.offsetHeight || 50;
+            const maxLeft = winW - btnW - 20; const maxTop = winH - btnH - 20;
+            const newLeft = Math.max(20, Math.random() * maxLeft); const newTop = Math.max(20, Math.random() * maxTop);
+            
+            noBtn.style.position = 'fixed'; noBtn.style.left = newLeft + 'px'; noBtn.style.top = newTop + 'px'; noBtn.style.zIndex = "9999"; 
+
+            const randomMsg = noMessages[Math.floor(Math.random() * noMessages.length)];
+            playfulText.innerText = randomMsg; playfulText.classList.add('visible');
+        }
+        noBtn.addEventListener('mouseover', moveNo); noBtn.addEventListener('touchstart', moveNo); noBtn.addEventListener('click', moveNo);
+
+        function handleYesClick() {
+            if(noBtn) noBtn.remove();
+            playfulText.innerText = "";
+            nextScene(10); startFinale();
+        }
+
+        // --- FINALE (RANDOM MESSAGE) ---
+        function startFinale() {
+            // Pick random message
+            const msg = finalMessages[Math.floor(Math.random() * finalMessages.length)];
+            
+            let i = 0;
+            createParticles(50, "❤️");
+            const timer = setInterval(() => {
+                document.getElementById('typewriter').textContent += msg.charAt(i);
+                i++;
+                if(i >= msg.length) {
+                    clearInterval(timer);
+                    document.getElementById('signature').style.opacity = 1;
+                }
+            }, 60); // Speed of typing
+        }
+
+        // --- Particles ---
+        function createParticles(count, char) {
+            for(let i=0; i<count; i++) {
+                const p = document.createElement('div'); p.innerText = char;
+                p.style.position = 'fixed'; p.style.left = Math.random() * 100 + "%"; p.style.top = Math.random() * 100 + "%";
+                p.style.fontSize = (Math.random() * 20 + 10) + "px"; p.style.pointerEvents = 'none';
+                p.style.transition = "transform 1s, opacity 1s"; p.style.zIndex = 9999;
+                document.body.appendChild(p);
+                setTimeout(() => { p.style.transform = `translate(${Math.random()*100-50}px, ${Math.random()*100-50}px)`; p.style.opacity = 0; }, 10);
+                setTimeout(() => p.remove(), 1000);
+            }
+        }
+
+        // Sound
+        const audio = document.getElementById('bgMusic');
+        const toggle = document.getElementById('soundToggle');
+        toggle.onclick = () => {
+            if(audio.paused) { audio.play(); toggle.innerText = "🎵 Playing"; }
+            else { audio.pause(); toggle.innerText = "🔇 Muted"; }
+        }
+    </script>
+</body>
+</html>
